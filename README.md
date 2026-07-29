@@ -1,11 +1,11 @@
+# Smart Campus Lost & Found UI
 
-  # Smart Campus Lost & Found UI
+This is a code bundle for Smart Campus Lost & Found UI. The original project is available at https://www.figma.com/design/6OWUjcLmavClwvMTCaCTk0/Smart-Campus-Lost---Found-UI.
 
-  This is a code bundle for Smart Campus Lost & Found UI. The original project is available at https://www.figma.com/design/6OWUjcLmavClwvMTCaCTk0/Smart-Campus-Lost---Found-UI.
+## Running the code
 
-  ## Running the code
+Run `npm i` to install the dependencies.
 
-  Run `npm i` to install the dependencies.
+Run `npm run dev` to start the development server.
 
-  Run `npm run dev` to start the development server.
-  
+i have updated the readme file.
