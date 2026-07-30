@@ -14,6 +14,7 @@ import {
   AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid,
   Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend
 } from "recharts";
+const API = "http://localhost:5000/api";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 type Screen =
@@ -628,7 +629,36 @@ function Login({ onNavigate }: { onNavigate: (s: Screen) => void }) {
   const [password, setPassword] = useState("");
   return (
     <AuthLayout title="Welcome back" subtitle="Sign in to your BACK_2U account">
-      <form className="space-y-4" onSubmit={e => { e.preventDefault(); onNavigate("dashboard"); }}>
+      <form
+  className="space-y-4"
+  onSubmit={async (e) => {
+    e.preventDefault();
+
+   
+  try {
+    const res = await fetch(`${API}/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      alert("Login Successful");
+      onNavigate("dashboard");
+    } else {
+      alert(data.message || "Invalid Email or Password");
+    }
+  } catch (err) {
+    alert("Server Error");
+  }
+}}>
         <Input label="Email" type="email" placeholder="you@campus.edu" value={email} onChange={setEmail} icon={<Mail size={16} />} required />
         <Input label="Password" type="password" placeholder="••••••••" value={password} onChange={setPassword} icon={<Lock size={16} />} required />
         <div className="flex items-center justify-between">
